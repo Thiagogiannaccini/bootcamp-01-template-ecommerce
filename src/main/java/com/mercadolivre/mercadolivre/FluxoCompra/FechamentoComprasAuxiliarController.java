@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class FechamentoContasAuxiliarController {
+public class FechamentoComprasAuxiliarController {
 	
 	@PersistenceContext
 	private EntityManager manager;
