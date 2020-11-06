@@ -10,12 +10,13 @@ import javax.persistence.ManyToOne;
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 
+import java.util.Objects;
 import com.mercadolivre.mercadolivre.Produto.Produto;
 import com.mercadolivre.mercadolivre.Usuario.Usuario;
 import com.sun.istack.NotNull;
 
 @Entity
-public class Pergunta {
+public class Pergunta implements Comparable<Pergunta> {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -61,4 +62,24 @@ public class Pergunta {
 		return produto.getDono();
 	}
 
+	@Override
+	public int compareTo(Pergunta o) {
+		return this.titulo.compareTo(o.titulo);
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o)
+			return true;
+		if (o == null || getClass() != o.getClass())
+			return false;
+		Pergunta pergunta = (Pergunta) o;
+		return Objects.equals(titulo, pergunta.titulo) && Objects.equals(interessada, pergunta.interessada)
+				&& Objects.equals(produto, pergunta.produto);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(titulo, interessada, produto);
+	}
 }

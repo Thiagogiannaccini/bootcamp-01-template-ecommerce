@@ -26,7 +26,7 @@ public class PerguntasController {
 	@Autowired
 	private Emails emails;
 
-	@PostMapping(value = "/api/produtos/{id}/perguntas")
+	@PostMapping("/produtos/{id}/perguntas")
 	@Transactional
 	public String criaPergunta(@RequestBody @Valid PerguntaDto dto, @PathVariable("id") Long id,
 			@AuthenticationPrincipal UsuarioLogado usuarioLogado) {
@@ -35,8 +35,8 @@ public class PerguntasController {
 
 		Pergunta novaPergunta = dto.toModel(interessada, produto);
 		manager.persist(novaPergunta);
-		emails.novaPergunta(novaPergunta);
 
+		emails.novaPergunta(novaPergunta);
 		return novaPergunta.toString();
 	}
 

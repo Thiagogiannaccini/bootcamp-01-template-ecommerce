@@ -44,6 +44,7 @@ public class ProdutosController {
 			@AuthenticationPrincipal UsuarioLogado usuarioLogado) {
 		Usuario dono = usuarioLogado.get();
 		Produto produto = dto.toModel(manager, dono);
+		manager.persist(produto);
 		return produto.toString();
 	}
 

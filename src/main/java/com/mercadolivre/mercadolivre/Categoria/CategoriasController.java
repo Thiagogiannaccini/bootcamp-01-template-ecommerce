@@ -15,7 +15,7 @@ public class CategoriasController {
 	@PersistenceContext
 	private EntityManager manager;
 
-	@PostMapping("/categoria")
+	@PostMapping("/categorias")
 	@Transactional
 	public String cadastraCategoria(@RequestBody @Valid CategoriaDto dto) {
 		Categoria novaCategoria = dto.toModel(manager);

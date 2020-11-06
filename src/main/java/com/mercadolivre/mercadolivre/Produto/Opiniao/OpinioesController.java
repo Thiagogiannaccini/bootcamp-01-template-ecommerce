@@ -21,7 +21,7 @@ public class OpinioesController {
 	@PersistenceContext
 	private EntityManager manager;
 
-	@PostMapping("/produto/{id}/opiniao")
+	@PostMapping("/produtos/{id}/opiniao")
 	@Transactional
 	public String adicionaOpiniao(@RequestBody @Valid OpiniaoDto dto, @PathVariable Long id,
 			@AuthenticationPrincipal UsuarioLogado usuarioLogado) {

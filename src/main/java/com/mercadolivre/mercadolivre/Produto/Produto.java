@@ -8,7 +8,6 @@ import java.util.SortedSet;
 import java.util.TreeSet;
 import java.util.function.Function;
 import java.util.stream.Collectors;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -76,7 +75,6 @@ public class Produto {
 		this.dono = dono;
 		this.caracteristicas.addAll(caracteristicas.stream().map(caracteristica -> caracteristica.toModel(this))
 				.collect(Collectors.toSet()));
-
 		Assert.isTrue(this.caracteristicas.size() >= 3, "Todo produto precisa ter no mínimo 3 ou mais características");
 	}
 
@@ -95,10 +93,6 @@ public class Produto {
 
 	public boolean pertenceAoUsuario(Usuario possivelDono) {
 		return this.dono.equals(possivelDono);
-	}
-
-	public Long getId() {
-		return id;
 	}
 
 	public String getNome() {
@@ -149,4 +143,15 @@ public class Produto {
 		return this.perguntas.stream().map(funcaoMapeadora).collect(Collectors.toCollection(TreeSet::new));
 	}
 
+	public boolean ajustaEstoque(@Positive int quantidade) {
+		Assert.isTrue(quantidade > 0, "Quantidade invalida! " + quantidade);
+
+		if (quantidade <= this.quantidade) {
+			this.quantidade -= quantidade;
+			return true;
+
+		}
+
+		return false;
+	}
 }

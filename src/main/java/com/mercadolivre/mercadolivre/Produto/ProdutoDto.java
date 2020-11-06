@@ -7,6 +7,9 @@ import java.util.List;
 import java.util.Set;
 
 import javax.persistence.EntityManager;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Positive;
@@ -21,6 +24,8 @@ import com.sun.istack.NotNull;
 
 public class ProdutoDto {
 
+	@Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private @NotBlank String nome;
 	private @NotNull int quantidade;
 	private @NotBlank @Length(max = 1000) String descricao;
